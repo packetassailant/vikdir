@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/pin/tftp"
+	"gopkg.in/pin/tftp.v1"
 
 	"bufio"
 	"encoding/xml"
