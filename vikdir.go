@@ -184,13 +184,15 @@ func getlocaledir(filename string) string {
 
 func getinputdir(localeURL string) string {
 	var inputURL string
+	// set up the http client to accept insecure certs that are commonly
+	// found on internal networks
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
 	res, err := client.Get(localeURL)
 	if err != nil {
-		fmt.Printf("Request timeout to %s in getinputdir", localeURL)
+		fmt.Printf("Request timeout to %s", localeURL)
 		log.Fatal(err)
 	} else {
 		defer res.Body.Close()
@@ -212,13 +214,15 @@ func getinputdir(localeURL string) string {
 
 func getlistdir(inputURL string) string {
 	var listURL string
+	// set up the http client to accept insecure certs that are commonly
+	// found on internal networks
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
 	res, err := client.Get(inputURL)
 	if err != nil {
-		fmt.Printf("Request timeout to %s in getlistdir", inputURL)
+		fmt.Printf("Request timeout to %s", inputURL)
 		log.Fatal(err)
 	} else {
 		defer res.Body.Close()
@@ -236,13 +240,15 @@ func getlistdir(inputURL string) string {
 
 func getcorplist(listURL string) {
 	var pageURL string
+	// set up the http client to accept insecure certs that are commonly
+	// found on internal networks
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	client := &http.Client{Transport: tr}
 	res, err := client.Get(listURL)
 	if err != nil {
-		fmt.Printf("Request timeout to %s in getcorplist", listURL)
+		fmt.Printf("Request timeout to %s", listURL)
 		log.Fatal(err)
 	} else {
 		defer res.Body.Close()
